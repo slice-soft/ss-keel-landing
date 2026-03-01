@@ -1,0 +1,138 @@
+---
+const year = new Date().getFullYear()
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="logo">
+        <svg width="22" height="22" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="var(--color-primary)"/>
+          <path d="M7 8h3v5.5L15.5 8H19l-6 6.5L19.5 21H16l-6-6.5V21H7V8z" fill="white"/>
+        </svg>
+        <span>Keel</span>
+      </a>
+      <p class="brand-desc">
+        Framework Go para APIs REST.<br />
+        Un proyecto de <a href="https://slicesoft.dev" target="_blank" rel="noopener noreferrer">SliceSoft</a>.
+      </p>
+    </div>
+
+    <nav class="footer-links">
+      <div class="link-group">
+        <p class="group-title">Proyecto</p>
+        <a href="https://docs.keel-go.dev" target="_blank" rel="noopener noreferrer">Documentación</a>
+        <a href="https://github.com/slice-soft/ss-keel-core" target="_blank" rel="noopener noreferrer">GitHub Core</a>
+        <a href="https://github.com/slice-soft/keel" target="_blank" rel="noopener noreferrer">GitHub CLI</a>
+        <a href="https://github.com/slice-soft/ss-community" target="_blank" rel="noopener noreferrer">Comunidad</a>
+      </div>
+      <div class="link-group">
+        <p class="group-title">Referencia</p>
+        <a href="https://github.com/slice-soft/ss-keel-example-mngr" target="_blank" rel="noopener noreferrer">Ejemplo práctico</a>
+        <a href="https://docs.keel-go.dev#addons">Addons</a>
+        <a href="https://docs.keel-go.dev#interfaces">Interfaces</a>
+      </div>
+      <div class="link-group">
+        <p class="group-title">SliceSoft</p>
+        <a href="https://slicesoft.dev" target="_blank" rel="noopener noreferrer">slicesoft.dev</a>
+        <a href="https://github.com/slice-soft" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://slicesoft.dev/blog" target="_blank" rel="noopener noreferrer">Blog</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <span>© {year} SliceSoft. Open source bajo licencia MIT.</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--ss-border);
+    background: var(--ss-bg-alt);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--dimensions-16, 64px);
+    padding-top: var(--dimensions-12, 48px);
+    padding-bottom: var(--dimensions-12, 48px);
+  }
+
+  .footer-brand { max-width: 280px; }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--dimensions-2, 8px);
+    text-decoration: none;
+    color: var(--ss-text);
+    font-weight: var(--text-weights-bold, 700);
+    font-size: var(--text-sizes-base, 16px);
+    margin-bottom: var(--dimensions-3, 12px);
+  }
+
+  .brand-desc {
+    font-size: var(--text-sizes-sm, 14px);
+    color: var(--ss-muted);
+    line-height: var(--text-line-heights-relaxed, 1.625);
+  }
+
+  .brand-desc a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .brand-desc a:hover { text-decoration: underline; }
+
+  .footer-links {
+    display: flex;
+    gap: var(--dimensions-12, 48px);
+  }
+
+  .link-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--dimensions-2, 8px);
+  }
+
+  .group-title {
+    font-size: 12px;
+    font-weight: var(--text-weights-semibold, 600);
+    color: var(--ss-text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--dimensions-1, 4px);
+  }
+
+  .link-group a {
+    font-size: var(--text-sizes-sm, 14px);
+    color: var(--ss-muted);
+    text-decoration: none;
+    transition: color var(--transitions-durations-short, 100ms);
+  }
+
+  .link-group a:hover { color: var(--ss-text); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--ss-border);
+    padding: var(--dimensions-4, 16px) 0;
+  }
+
+  .footer-bottom span {
+    font-size: 13px;
+    color: var(--ss-muted);
+  }
+
+  @media (max-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: var(--dimensions-8, 32px);
+    }
+    .footer-links { flex-wrap: wrap; gap: var(--dimensions-6, 24px); }
+    .footer-brand { max-width: 100%; }
+  }
+</style>
