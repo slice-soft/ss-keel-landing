@@ -1,0 +1,177 @@
+---
+const layers = [
+  {
+    label: 'Módulo',
+    color: 'blue',
+    desc: 'Agrupa todo lo relacionado a un dominio. Se registra en la app con una sola línea.',
+    code: 'app.Use(&users.Module{})',
+  },
+  {
+    label: 'Controlador',
+    color: 'cyan',
+    desc: 'Recibe HTTP, valida la entrada y delega al servicio. No sabe nada de la base de datos.',
+    code: 'core.POST("/users", c.Create)',
+  },
+  {
+    label: 'Servicio',
+    color: 'purple',
+    desc: 'Lógica de negocio pura. No sabe nada de HTTP ni de cómo se almacenan los datos.',
+    code: 'func (s *UsersService) Create(dto CreateUserDTO)',
+  },
+  {
+    label: 'Repositorio',
+    color: 'green',
+    desc: 'Acceso a datos con interfaz genérica. Intercambia la implementación sin tocar el servicio.',
+    code: 'type Repository[T any, ID any] interface',
+  },
+]
+---
+
+<section id="arquitectura" class="section">
+  <div class="container">
+    <h2 class="section-title">
+      Una <span class="accent-blue">arquitectura</span> clara
+    </h2>
+    <p class="section-desc">
+      Cuatro capas con responsabilidades únicas. La estructura que escala sin que nadie tenga miedo de tocar código ajeno.
+    </p>
+
+    <div class="arch-layout">
+      <!-- Diagrama visual -->
+      <div class="arch-diagram">
+        {layers.map((layer, i) => (
+          <div class={`arch-layer layer-${layer.color}`}>
+            <div class="layer-label">{layer.label}</div>
+            {i < layers.length - 1 && (
+              <div class="layer-arrow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19"/>
+                  <polyline points="19 12 12 19 5 12"/>
+                </svg>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <!-- Descripción de cada capa -->
+      <div class="arch-cards">
+        {layers.map(layer => (
+          <div class={`arch-card card-${layer.color}`}>
+            <div class="arch-card-header">
+              <span class={`arch-badge badge-${layer.color}`}>{layer.label}</span>
+            </div>
+            <p class="arch-desc">{layer.desc}</p>
+            <code class="arch-code">{layer.code}</code>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .arch-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: var(--dimensions-12, 48px);
+    align-items: start;
+  }
+
+  /* ── Diagrama ── */
+  .arch-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding-top: var(--dimensions-2, 8px);
+  }
+
+  .arch-layer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .layer-label {
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+    border-radius: var(--radius-base, 8px);
+    font-size: var(--text-sizes-sm, 14px);
+    font-weight: var(--text-weights-semibold, 600);
+    border: 1px solid;
+  }
+
+  .layer-blue   .layer-label { color: #60a5fa; background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.3); }
+  .layer-cyan   .layer-label { color: var(--color-accent); background: rgba(34,211,238,0.08); border-color: rgba(34,211,238,0.3); }
+  .layer-purple .layer-label { color: #c084fc; background: rgba(192,132,252,0.08); border-color: rgba(192,132,252,0.3); }
+  .layer-green  .layer-label { color: #4ade80; background: rgba(74,222,128,0.08); border-color: rgba(74,222,128,0.3); }
+
+  .layer-arrow {
+    color: var(--ss-muted);
+    padding: 6px 0;
+  }
+
+  /* ── Cards ── */
+  .arch-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--dimensions-3, 12px);
+  }
+
+  .arch-card {
+    background: var(--ss-card);
+    border: 1px solid var(--ss-border);
+    border-left: 3px solid;
+    border-radius: var(--radius-base, 8px);
+    padding: var(--dimensions-4, 16px) var(--dimensions-5, 20px);
+  }
+
+  .card-blue   { border-left-color: #3b82f6; }
+  .card-cyan   { border-left-color: var(--color-accent); }
+  .card-purple { border-left-color: #c084fc; }
+  .card-green  { border-left-color: #4ade80; }
+
+  .arch-card-header { margin-bottom: var(--dimensions-2, 8px); }
+
+  .arch-badge {
+    font-size: 12px;
+    font-weight: var(--text-weights-semibold, 600);
+    padding: 2px 10px;
+    border-radius: var(--radius-full, 9999px);
+    border: 1px solid;
+  }
+
+  .badge-blue   { color: #60a5fa; background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.3); }
+  .badge-cyan   { color: var(--color-accent); background: rgba(34,211,238,0.1); border-color: rgba(34,211,238,0.3); }
+  .badge-purple { color: #c084fc; background: rgba(192,132,252,0.1); border-color: rgba(192,132,252,0.3); }
+  .badge-green  { color: #4ade80; background: rgba(74,222,128,0.1); border-color: rgba(74,222,128,0.3); }
+
+  .arch-desc {
+    font-size: var(--text-sizes-sm, 14px);
+    color: var(--ss-muted);
+    line-height: var(--text-line-heights-relaxed, 1.625);
+    margin-bottom: var(--dimensions-2, 8px);
+  }
+
+  .arch-code {
+    font-family: var(--text-fonts-mono, ui-monospace, monospace);
+    font-size: 12px;
+    color: var(--ss-muted);
+    background: rgba(255,255,255,0.03);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm, 4px);
+    display: block;
+  }
+
+  :global([data-theme="light"]) .arch-code {
+    background: rgba(0,0,0,0.04);
+  }
+
+  @media (max-width: 700px) {
+    .arch-layout { grid-template-columns: 1fr; }
+    .arch-diagram { display: none; }
+  }
+</style>
