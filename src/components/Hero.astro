@@ -1,0 +1,235 @@
+---
+---
+
+<section class="hero section">
+  <div class="container hero-inner">
+
+    <div class="hero-text">
+      <div class="eyebrow">Framework Go · Open Source</div>
+      <h1>
+        Estructura real,<br />
+        <span class="accent-blue">sin magia</span>
+      </h1>
+      <p class="subtitle">
+        Construye APIs REST en Go con arquitectura modular, documentación OpenAPI
+        automática y código que cualquier desarrollador puede leer y mantener.
+      </p>
+      <div class="hero-actions">
+        <a href="https://docs.keel-go.dev" class="btn-primary">
+          Empezar →
+        </a>
+        <a href="https://github.com/slice-soft/ss-keel-core" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
+      </div>
+      <div class="install-hint">
+        <code>go get github.com/slice-soft/ss-keel-core</code>
+      </div>
+    </div>
+
+    <div class="hero-code">
+      <div class="code-window">
+        <div class="code-bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="file-name">main.go</span>
+        </div>
+        <pre class="code-body"><span class="c-keyword">func</span> <span class="c-fn">main</span>() &#123;
+  app := core.<span class="c-fn">New</span>(core.KConfig&#123;
+    Port:        <span class="c-num">3000</span>,
+    ServiceName: <span class="c-str">"my-api"</span>,
+    Env:         <span class="c-str">"development"</span>,
+    Docs: core.DocsConfig&#123;
+      Title:   <span class="c-str">"My API"</span>,
+      Version: <span class="c-str">"1.0.0"</span>,
+    &#125;,
+  &#125;)
+
+  app.<span class="c-fn">Use</span>(&amp;users.Module&#123;&#125;)
+  app.<span class="c-fn">Use</span>(&amp;products.Module&#123;&#125;)
+
+  log.<span class="c-fn">Fatal</span>(app.<span class="c-fn">Listen</span>())
+&#125;</pre>
+      </div>
+
+      <div class="code-window" style="margin-top: 16px;">
+        <div class="code-bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="file-name">controller.go</span>
+        </div>
+        <pre class="code-body"><span class="c-keyword">func</span> (c *UsersController) <span class="c-fn">Routes</span>() []core.Route &#123;
+  <span class="c-keyword">return</span> []core.Route&#123;
+    core.<span class="c-fn">GET</span>(<span class="c-str">"/users"</span>, c.FindAll).
+      <span class="c-fn">Tag</span>(<span class="c-str">"users"</span>).
+      <span class="c-fn">Describe</span>(<span class="c-str">"List users"</span>).
+      <span class="c-fn">WithResponse</span>(core.<span class="c-fn">WithResponse</span>[UserDTO](<span class="c-num">200</span>)),
+
+    core.<span class="c-fn">POST</span>(<span class="c-str">"/users"</span>, c.Create).
+      <span class="c-fn">Tag</span>(<span class="c-str">"users"</span>).
+      <span class="c-fn">WithBody</span>(core.<span class="c-fn">WithBody</span>[CreateUserDTO]()).
+      <span class="c-fn">WithResponse</span>(core.<span class="c-fn">WithResponse</span>[UserDTO](<span class="c-num">201</span>)),
+  &#125;
+&#125;</pre>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .hero { padding-top: 72px; padding-bottom: 72px; }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--dimensions-16, 64px);
+    align-items: center;
+  }
+
+  .eyebrow {
+    font-size: var(--text-sizes-sm, 14px);
+    font-weight: var(--text-weights-medium, 500);
+    color: var(--color-primary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: var(--dimensions-4, 16px);
+  }
+
+  h1 {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: var(--text-weights-bold, 700);
+    letter-spacing: -0.03em;
+    line-height: var(--text-line-heights-tight, 1.15);
+    margin-bottom: var(--dimensions-6, 24px);
+    color: var(--ss-text);
+  }
+
+  .subtitle {
+    font-size: clamp(15px, 1.5vw, 17px);
+    color: var(--ss-muted);
+    line-height: var(--text-line-heights-relaxed, 1.625);
+    max-width: 480px;
+    margin-bottom: var(--dimensions-8, 32px);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--dimensions-3, 12px);
+    flex-wrap: wrap;
+    margin-bottom: var(--dimensions-5, 20px);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    border-radius: var(--radius-base, 8px);
+    font-size: var(--text-sizes-base, 16px);
+    font-weight: var(--text-weights-semibold, 600);
+    text-decoration: none;
+    background: var(--color-primary);
+    color: #fff;
+    transition: background var(--transitions-durations-short, 100ms);
+  }
+
+  .btn-primary:hover { background: var(--color-primary-hover); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 20px;
+    border-radius: var(--radius-base, 8px);
+    font-size: var(--text-sizes-base, 16px);
+    font-weight: var(--text-weights-medium, 500);
+    text-decoration: none;
+    border: 1px solid var(--ss-border);
+    color: var(--ss-text);
+    transition: all var(--transitions-durations-short, 100ms);
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(59, 130, 246, 0.4);
+    background: rgba(59, 130, 246, 0.06);
+  }
+
+  .install-hint {
+    display: inline-flex;
+  }
+
+  .install-hint code {
+    font-family: var(--text-fonts-mono, ui-monospace, monospace);
+    font-size: 13px;
+    color: var(--ss-muted);
+    background: var(--ss-card);
+    border: 1px solid var(--ss-border);
+    padding: 7px 14px;
+    border-radius: var(--radius-base, 8px);
+  }
+
+  /* ── Code window ── */
+  .code-window {
+    background: var(--ss-card);
+    border: 1px solid var(--ss-border);
+    border-radius: var(--radius-lg, 12px);
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .code-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--ss-border);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .dot.red    { background: #ff5f57; }
+  .dot.yellow { background: #febc2e; }
+  .dot.green  { background: #28c840; }
+
+  .file-name {
+    margin-left: 6px;
+    font-size: 12px;
+    color: var(--ss-muted);
+    font-family: var(--text-fonts-mono, ui-monospace, monospace);
+  }
+
+  .code-body {
+    padding: 16px 20px;
+    font-family: var(--text-fonts-mono, ui-monospace, monospace);
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-x: auto;
+    color: var(--ss-text);
+    white-space: pre;
+  }
+
+  .c-keyword { color: #c792ea; }
+  .c-fn      { color: #82aaff; }
+  .c-str     { color: #c3e88d; }
+  .c-num     { color: #f78c6c; }
+
+  :global([data-theme="light"]) .c-keyword { color: #7c3aed; }
+  :global([data-theme="light"]) .c-fn      { color: #1d4ed8; }
+  :global([data-theme="light"]) .c-str     { color: #16a34a; }
+  :global([data-theme="light"]) .c-num     { color: #c2410c; }
+
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-code  { display: none; }
+  }
+</style>
