@@ -1,46 +1,72 @@
-# Astro Starter Kit: Basics
+# ss-keel-landing
 
-```sh
-npm create astro@latest -- --template basics
+Landing page for [keel-go.dev](https://keel-go.dev) — the main website for the Keel framework.
+
+[![CI](https://github.com/slice-soft/ss-keel-landing/actions/workflows/ci.yml/badge.svg)](https://github.com/slice-soft/ss-keel-landing/actions)
+![Astro](https://img.shields.io/badge/Astro-5.x-FF5D01?logo=astro&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Made in Colombia](https://img.shields.io/badge/Made%20in-Colombia-FCD116?labelColor=003893)
+
+---
+
+## Stack
+
+- **[Astro](https://astro.build)** — static site generation
+- No JS frameworks — scoped HTML + CSS per component
+
+---
+
+## Local Development
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The site will be available at `http://localhost:4321`.
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## Structure
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```
+src/
+├── layouts/
+│   └── Layout.astro          # Base: meta tags, SEO, design system CDN, anti-FOUC
+├── components/
+│   ├── Nav.astro             # Navbar with theme toggle and links
+│   ├── Hero.astro            # Hero section with code examples
+│   ├── Features.astro        # 4 framework pillars
+│   ├── Architecture.astro    # Module→Controller→Service→Repository diagram
+│   ├── Addons.astro          # Addon ecosystem grid
+│   ├── CLI.astro             # keel CLI demo terminal
+│   ├── CTA.astro             # Final call to action
+│   └── Footer.astro          # Footer with links
+└── pages/
+    └── index.astro           # Main page
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+---
 
-## 🧞 Commands
+## Build
 
-All commands are run from the root of the project, from a terminal:
+```bash
+npm run build     # Outputs to dist/
+npm run preview   # Preview the build locally
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+---
 
-## 👀 Want to learn more?
+## Contributing
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for repository-specific rules.
+The base workflow, commit conventions, and community standards live in [ss-community](https://github.com/slice-soft/ss-community/blob/main/CONTRIBUTING.md).
+
+## Community
+
+| Document | |
+|---|---|
+| [CONTRIBUTING.md](https://github.com/slice-soft/ss-community/blob/main/CONTRIBUTING.md) | Workflow, commit conventions, and PR guidelines |
+| [GOVERNANCE.md](https://github.com/slice-soft/ss-community/blob/main/GOVERNANCE.md) | Decision-making, roles, and release process |
+| [CODE_OF_CONDUCT.md](https://github.com/slice-soft/ss-community/blob/main/CODE_OF_CONDUCT.md) | Community standards |
+| [SECURITY.md](https://github.com/slice-soft/ss-community/blob/main/SECURITY.md) | How to report vulnerabilities |
