@@ -1,0 +1,160 @@
+---
+const addons = [
+  { name: 'ss-keel-gorm',    category: 'Database',      desc: 'SQL con GORM — Postgres, MySQL, SQLite',           live: false },
+  { name: 'ss-keel-mongo',   category: 'Database',      desc: 'MongoDB con el driver oficial de Go',              live: false },
+  { name: 'ss-keel-redis',   category: 'Cache',         desc: 'Cache distribuida con Redis',                      live: false },
+  { name: 'ss-keel-jwt',     category: 'Auth',          desc: 'Autenticación con JSON Web Tokens',                live: false },
+  { name: 'ss-keel-oauth',   category: 'Auth',          desc: 'OAuth 2.0 — Google, GitHub y más',                 live: false },
+  { name: 'ss-keel-amqp',    category: 'Messaging',     desc: 'Pub/Sub con RabbitMQ',                             live: false },
+  { name: 'ss-keel-kafka',   category: 'Messaging',     desc: 'Eventos con Apache Kafka',                         live: false },
+  { name: 'ss-keel-mail',    category: 'Communication', desc: 'Email — SMTP, Resend, SendGrid',                   live: false },
+  { name: 'ss-keel-ws',      category: 'Communication', desc: 'WebSockets en tiempo real',                        live: false },
+  { name: 'ss-keel-storage', category: 'Storage',       desc: 'Archivos — S3, Google Cloud Storage, local',       live: false },
+  { name: 'ss-keel-metrics', category: 'Observability', desc: 'Métricas con Prometheus',                          live: false },
+  { name: 'ss-keel-tracing', category: 'Observability', desc: 'Trazabilidad con OpenTelemetry',                   live: false },
+  { name: 'ss-keel-cron',    category: 'Jobs',          desc: 'Tareas programadas con cron expressions',          live: false },
+  { name: 'ss-keel-i18n',    category: 'i18n',          desc: 'Traducciones e internacionalización',              live: false },
+]
+
+const categoryColors: Record<string, string> = {
+  Database:      'blue',
+  Cache:         'red',
+  Auth:          'purple',
+  Messaging:     'orange',
+  Communication: 'cyan',
+  Storage:       'yellow',
+  Observability: 'green',
+  Jobs:          'pink',
+  i18n:          'teal',
+}
+---
+
+<section id="addons" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">
+      Ecosistema de <span class="accent-blue">addons</span>
+    </h2>
+    <p class="section-desc">
+      Cada addon implementa una interfaz definida en el core. Úsalos oficiales o construye los tuyos — el contrato es el mismo.
+    </p>
+
+    <div class="grid">
+      {addons.map(addon => (
+        <div class="card">
+          <div class="card-top">
+            <span class={`cat cat-${categoryColors[addon.category]}`}>{addon.category}</span>
+            {addon.live
+              ? <span class="badge-live">Disponible</span>
+              : <span class="badge-soon">Próximamente</span>
+            }
+          </div>
+          <div class="addon-name">{addon.name}</div>
+          <p class="addon-desc">{addon.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="addon-note">
+      ¿Necesitas un adaptador personalizado? Implementa la interfaz del core y funciona con Keel desde el día uno.
+      <a href="https://docs.keel-go.dev" target="_blank" rel="noopener noreferrer">Ver interfaces →</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--dimensions-4, 16px);
+    margin-bottom: var(--dimensions-8, 32px);
+  }
+
+  .card {
+    background: var(--ss-bg);
+    border: 1px solid var(--ss-border);
+    border-radius: var(--radius-lg, 12px);
+    padding: var(--dimensions-4, 16px);
+    box-shadow: var(--shadows-card);
+    transition: border-color var(--transitions-durations-medium, 300ms);
+    display: flex;
+    flex-direction: column;
+    gap: var(--dimensions-2, 8px);
+  }
+
+  .card:hover { border-color: rgba(59, 130, 246, 0.25); }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .cat {
+    font-size: 11px;
+    font-weight: var(--text-weights-medium, 500);
+    padding: 2px 8px;
+    border-radius: var(--radius-full, 9999px);
+    border: 1px solid;
+  }
+
+  .cat-blue   { color: #60a5fa; background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.25); }
+  .cat-red    { color: #f87171; background: rgba(248,113,113,0.1); border-color: rgba(248,113,113,0.25); }
+  .cat-purple { color: #c084fc; background: rgba(192,132,252,0.1); border-color: rgba(192,132,252,0.25); }
+  .cat-orange { color: #fb923c; background: rgba(251,146,60,0.1); border-color: rgba(251,146,60,0.25); }
+  .cat-cyan   { color: var(--color-accent); background: rgba(34,211,238,0.1); border-color: rgba(34,211,238,0.25); }
+  .cat-yellow { color: #facc15; background: rgba(250,204,21,0.1); border-color: rgba(250,204,21,0.25); }
+  .cat-green  { color: #4ade80; background: rgba(74,222,128,0.1); border-color: rgba(74,222,128,0.25); }
+  .cat-pink   { color: #f472b6; background: rgba(244,114,182,0.1); border-color: rgba(244,114,182,0.25); }
+  .cat-teal   { color: #2dd4bf; background: rgba(45,212,191,0.1); border-color: rgba(45,212,191,0.25); }
+
+  .badge-live {
+    font-size: 11px;
+    font-weight: var(--text-weights-medium, 500);
+    color: #22c55e;
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.25);
+    padding: 2px 8px;
+    border-radius: var(--radius-full, 9999px);
+  }
+
+  .badge-soon {
+    font-size: 11px;
+    font-weight: var(--text-weights-medium, 500);
+    color: var(--ss-muted);
+    background: rgba(148,163,184,0.08);
+    border: 1px solid var(--ss-border);
+    padding: 2px 8px;
+    border-radius: var(--radius-full, 9999px);
+  }
+
+  .addon-name {
+    font-size: 13px;
+    font-weight: var(--text-weights-semibold, 600);
+    font-family: var(--text-fonts-mono, ui-monospace, monospace);
+    color: var(--ss-text);
+  }
+
+  .addon-desc {
+    font-size: 12px;
+    color: var(--ss-muted);
+    line-height: var(--text-line-heights-relaxed, 1.625);
+  }
+
+  .addon-note {
+    text-align: center;
+    font-size: var(--text-sizes-sm, 14px);
+    color: var(--ss-muted);
+  }
+
+  .addon-note a {
+    color: var(--color-primary);
+    text-decoration: none;
+    margin-left: 4px;
+  }
+
+  .addon-note a:hover { text-decoration: underline; }
+
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .grid { grid-template-columns: 1fr; } }
+</style>
