@@ -1,0 +1,29 @@
+---
+import Layout       from '../../layouts/Layout.astro'
+import Nav          from '../../components/Nav.astro'
+import Hero         from '../../components/Hero.astro'
+import Features     from '../../components/Features.astro'
+import Architecture from '../../components/Architecture.astro'
+import Addons       from '../../components/Addons.astro'
+import CLI          from '../../components/CLI.astro'
+import CTA          from '../../components/CTA.astro'
+import Footer       from '../../components/Footer.astro'
+import { LANGUAGES_KEYS } from '../../i18n/utils'
+
+export function getStaticPaths() {
+  return LANGUAGES_KEYS.map(lang => ({ params: { lang } }))
+}
+---
+
+<Layout>
+  <Nav />
+  <main>
+    <Hero />
+    <Features />
+    <Architecture />
+    <Addons />
+    <CLI />
+    <CTA />
+  </main>
+  <Footer />
+</Layout>

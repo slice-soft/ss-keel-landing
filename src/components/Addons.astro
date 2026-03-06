@@ -1,42 +1,17 @@
 ---
-const addons = [
-  { name: 'ss-keel-gorm',    category: 'Database',      desc: 'SQL con GORM — Postgres, MySQL, SQLite',           live: false },
-  { name: 'ss-keel-mongo',   category: 'Database',      desc: 'MongoDB con el driver oficial de Go',              live: false },
-  { name: 'ss-keel-redis',   category: 'Cache',         desc: 'Cache distribuida con Redis',                      live: false },
-  { name: 'ss-keel-jwt',     category: 'Auth',          desc: 'Autenticación con JSON Web Tokens',                live: false },
-  { name: 'ss-keel-oauth',   category: 'Auth',          desc: 'OAuth 2.0 — Google, GitHub y más',                 live: false },
-  { name: 'ss-keel-amqp',    category: 'Messaging',     desc: 'Pub/Sub con RabbitMQ',                             live: false },
-  { name: 'ss-keel-kafka',   category: 'Messaging',     desc: 'Eventos con Apache Kafka',                         live: false },
-  { name: 'ss-keel-mail',    category: 'Communication', desc: 'Email — SMTP, Resend, SendGrid',                   live: false },
-  { name: 'ss-keel-ws',      category: 'Communication', desc: 'WebSockets en tiempo real',                        live: false },
-  { name: 'ss-keel-storage', category: 'Storage',       desc: 'Archivos — S3, Google Cloud Storage, local',       live: false },
-  { name: 'ss-keel-metrics', category: 'Observability', desc: 'Métricas con Prometheus',                          live: false },
-  { name: 'ss-keel-tracing', category: 'Observability', desc: 'Trazabilidad con OpenTelemetry',                   live: false },
-  { name: 'ss-keel-cron',    category: 'Jobs',          desc: 'Tareas programadas con cron expressions',          live: false },
-  { name: 'ss-keel-i18n',    category: 'i18n',          desc: 'Traducciones e internacionalización',              live: false },
-]
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { addons, categoryColors } from "../data/addons";
 
-const categoryColors: Record<string, string> = {
-  Database:      'blue',
-  Cache:         'red',
-  Auth:          'purple',
-  Messaging:     'orange',
-  Communication: 'cyan',
-  Storage:       'yellow',
-  Observability: 'green',
-  Jobs:          'pink',
-  i18n:          'teal',
-}
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section id="addons" class="section section-alt">
   <div class="container">
     <h2 class="section-title">
-      Ecosistema de <span class="accent-blue">addons</span>
+      {t('addons.section_title')} <span class="accent-blue">{t('addons.section_title_accent')}</span>
     </h2>
-    <p class="section-desc">
-      Cada addon implementa una interfaz definida en el core. Úsalos oficiales o construye los tuyos — el contrato es el mismo.
-    </p>
+    <p class="section-desc">{t('addons.section_desc')}</p>
 
     <div class="grid">
       {addons.map(addon => (
@@ -44,19 +19,19 @@ const categoryColors: Record<string, string> = {
           <div class="card-top">
             <span class={`cat cat-${categoryColors[addon.category]}`}>{addon.category}</span>
             {addon.live
-              ? <span class="badge-live">Disponible</span>
-              : <span class="badge-soon">Próximamente</span>
+              ? <span class="badge-live">{t('addons.badge_live')}</span>
+              : <span class="badge-soon">{t('addons.badge_soon')}</span>
             }
           </div>
           <div class="addon-name">{addon.name}</div>
-          <p class="addon-desc">{addon.desc}</p>
+          <p class="addon-desc">{t(`addons.${addon.key}.desc` as any)}</p>
         </div>
       ))}
     </div>
 
     <p class="addon-note">
-      ¿Necesitas un adaptador personalizado? Implementa la interfaz del core y funciona con Keel desde el día uno.
-      <a href="https://docs.keel-go.dev" target="_blank" rel="noopener noreferrer">Ver interfaces →</a>
+      {t('addons.note')}
+      <a href="https://docs.keel-go.dev" target="_blank" rel="noopener noreferrer">{t('addons.note_link')}</a>
     </p>
   </div>
 </section>

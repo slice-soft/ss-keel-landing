@@ -1,0 +1,28 @@
+export const addons = [
+  { key: 'gorm',    name: 'ss-keel-gorm',    category: 'Database',      live: false },
+  { key: 'mongo',   name: 'ss-keel-mongo',   category: 'Database',      live: false },
+  { key: 'redis',   name: 'ss-keel-redis',   category: 'Cache',         live: false },
+  { key: 'jwt',     name: 'ss-keel-jwt',     category: 'Auth',          live: false },
+  { key: 'oauth',   name: 'ss-keel-oauth',   category: 'Auth',          live: false },
+  { key: 'amqp',    name: 'ss-keel-amqp',    category: 'Messaging',     live: false },
+  { key: 'kafka',   name: 'ss-keel-kafka',   category: 'Messaging',     live: false },
+  { key: 'mail',    name: 'ss-keel-mail',    category: 'Communication', live: false },
+  { key: 'ws',      name: 'ss-keel-ws',      category: 'Communication', live: false },
+  { key: 'storage', name: 'ss-keel-storage', category: 'Storage',       live: false },
+  { key: 'metrics', name: 'ss-keel-metrics', category: 'Observability', live: false },
+  { key: 'tracing', name: 'ss-keel-tracing', category: 'Observability', live: false },
+  { key: 'cron',    name: 'ss-keel-cron',    category: 'Jobs',          live: false },
+  { key: 'i18n',    name: 'ss-keel-i18n',    category: 'i18n',          live: false },
+] as const;
+
+export const categoryColors: Record<string, string> = {
+  Database:      'blue',
+  Cache:         'red',
+  Auth:          'purple',
+  Messaging:     'orange',
+  Communication: 'cyan',
+  Storage:       'yellow',
+  Observability: 'green',
+  Jobs:          'pink',
+  i18n:          'teal',
+};

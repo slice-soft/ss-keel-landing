@@ -1,47 +1,24 @@
 ---
-const layers = [
-  {
-    label: 'Módulo',
-    color: 'blue',
-    desc: 'Agrupa todo lo relacionado a un dominio. Se registra en la app con una sola línea.',
-    code: 'app.Use(&users.Module{})',
-  },
-  {
-    label: 'Controlador',
-    color: 'cyan',
-    desc: 'Recibe HTTP, valida la entrada y delega al servicio. No sabe nada de la base de datos.',
-    code: 'core.POST("/users", c.Create)',
-  },
-  {
-    label: 'Servicio',
-    color: 'purple',
-    desc: 'Lógica de negocio pura. No sabe nada de HTTP ni de cómo se almacenan los datos.',
-    code: 'func (s *UsersService) Create(dto CreateUserDTO)',
-  },
-  {
-    label: 'Repositorio',
-    color: 'green',
-    desc: 'Acceso a datos con interfaz genérica. Intercambia la implementación sin tocar el servicio.',
-    code: 'type Repository[T any, ID any] interface',
-  },
-]
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { layers } from "../data/architecture";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<section id="arquitectura" class="section">
+<section id="architecture" class="section">
   <div class="container">
     <h2 class="section-title">
-      Una <span class="accent-blue">arquitectura</span> clara
+      {t('arch.section_title')} <span class="accent-blue">{t('arch.section_title_accent')}</span>
     </h2>
-    <p class="section-desc">
-      Cuatro capas con responsabilidades únicas. La estructura que escala sin que nadie tenga miedo de tocar código ajeno.
-    </p>
+    <p class="section-desc">{t('arch.section_desc')}</p>
 
     <div class="arch-layout">
-      <!-- Diagrama visual -->
+      <!-- Visual diagram -->
       <div class="arch-diagram">
         {layers.map((layer, i) => (
           <div class={`arch-layer layer-${layer.color}`}>
-            <div class="layer-label">{layer.label}</div>
+            <div class="layer-label">{t(`arch.${layer.key}.label` as any)}</div>
             {i < layers.length - 1 && (
               <div class="layer-arrow">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -54,14 +31,14 @@ const layers = [
         ))}
       </div>
 
-      <!-- Descripción de cada capa -->
+      <!-- Layer descriptions -->
       <div class="arch-cards">
         {layers.map(layer => (
           <div class={`arch-card card-${layer.color}`}>
             <div class="arch-card-header">
-              <span class={`arch-badge badge-${layer.color}`}>{layer.label}</span>
+              <span class={`arch-badge badge-${layer.color}`}>{t(`arch.${layer.key}.label` as any)}</span>
             </div>
-            <p class="arch-desc">{layer.desc}</p>
+            <p class="arch-desc">{t(`arch.${layer.key}.desc` as any)}</p>
             <code class="arch-code">{layer.code}</code>
           </div>
         ))}
@@ -78,7 +55,7 @@ const layers = [
     align-items: start;
   }
 
-  /* ── Diagrama ── */
+  /* ── Diagram ── */
   .arch-diagram {
     display: flex;
     flex-direction: column;
