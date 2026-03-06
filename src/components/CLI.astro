@@ -1,47 +1,36 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { cliCommands, cliFeatureKeys } from "../data/cli";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section id="cli" class="section">
   <div class="container cli-layout">
 
     <div class="cli-text">
-      <div class="eyebrow">Keel CLI</div>
-      <h2>De cero a API<br /><span class="accent-blue">en segundos</span></h2>
-      <p class="cli-desc">
-        Scaffolding de proyectos, generación de módulos, controladores, servicios,
-        repositorios y guardas. Un comando y tienes la estructura lista.
-      </p>
+      <div class="eyebrow">{t('cli.eyebrow')}</div>
+      <h2>{t('cli.title')}<br /><span class="accent-blue">{t('cli.title_accent')}</span></h2>
+      <p class="cli-desc">{t('cli.desc')}</p>
 
       <ul class="cli-feature-list">
-        <li>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-          Proyecto completo con un solo comando
-        </li>
-        <li>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-          Generación de cualquier capa de forma independiente
-        </li>
-        <li>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-          Servidor de desarrollo con live reload (<code>keel run</code>)
-        </li>
-        <li>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-          Auto-actualización con <code>keel upgrade</code>
-        </li>
+        {cliFeatureKeys.map((key, i) => (
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            {i === 2
+              ? <span>{t(key as any)} (<code>keel run</code>)</span>
+              : i === 3
+              ? <span>{t(key as any)} <code>keel upgrade</code></span>
+              : t(key as any)
+            }
+          </li>
+        ))}
       </ul>
 
-      <a href="https://docs.keel-go.dev" class="btn-cli">
-        Ver documentación del CLI →
-      </a>
+      <a href="https://docs.keel-go.dev" class="btn-cli">{t('cli.cta')}</a>
     </div>
 
     <div class="terminal">
@@ -52,36 +41,20 @@
         <span class="terminal-title">terminal</span>
       </div>
       <div class="terminal-body">
-        <div class="t-line">
-          <span class="prompt">$</span>
-          <span class="cmd">keel new my-api</span>
-        </div>
-        <div class="t-output">✓ Proyecto creado en ./my-api</div>
-        <div class="t-output">✓ go.mod inicializado</div>
-        <div class="t-output">✓ .env configurado</div>
-        <br />
-        <div class="t-line">
-          <span class="prompt">$</span>
-          <span class="cmd">keel generate module users</span>
-        </div>
-        <div class="t-output">✓ modules/users/module.go</div>
-        <div class="t-output">✓ modules/users/controller.go</div>
-        <div class="t-output">✓ modules/users/service.go</div>
-        <div class="t-output">✓ modules/users/repository.go</div>
-        <br />
-        <div class="t-line">
-          <span class="prompt">$</span>
-          <span class="cmd">keel generate crud products</span>
-        </div>
-        <div class="t-output">✓ CRUD completo generado</div>
-        <div class="t-output">✓ DTOs, validaciones y rutas listas</div>
-        <br />
-        <div class="t-line">
-          <span class="prompt">$</span>
-          <span class="cmd">keel run</span>
-        </div>
-        <div class="t-output success">▶ Servidor corriendo en :3000</div>
-        <div class="t-output success">▶ Docs en http://localhost:3000/docs</div>
+        {cliCommands.map((block, bi) => (
+          <>
+            {bi > 0 && <br />}
+            <div class="t-line">
+              <span class="prompt">$</span>
+              <span class="cmd">{block.cmd}</span>
+            </div>
+            {block.outputKeys.map(key => (
+              <div class={`t-output${block.success ? ' success' : ''}`}>
+                {t(key as any)}
+              </div>
+            ))}
+          </>
+        ))}
       </div>
     </div>
 
