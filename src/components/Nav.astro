@@ -29,7 +29,7 @@ const t = useTranslations(lang);
     </nav>
 
     <div class="nav-actions">
-      <a href="https://docs.keel-go.dev" class="btn-docs">{t('nav.docs')}</a>
+      <a href={`https://docs.keel-go.dev/${lang}/`} class="btn-docs">{t('nav.docs')}</a>
 
       <div class="lang-switcher" role="group" aria-label="Language">
         {LANGUAGES_KEYS.map(l => (
