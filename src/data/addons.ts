@@ -1,6 +1,6 @@
 export const addons = [
   { key: 'gorm',    name: 'ss-keel-gorm',    category: 'Database',      live: true, slug: '/addons/ss-keel-gorm/' },
-  { key: 'mongo',   name: 'ss-keel-mongo',   category: 'Database',      live: false },
+  { key: 'mongo',   name: 'ss-keel-mongo',   category: 'Database',      live: true, slug: '/addons/ss-keel-mongo/' },
   { key: 'redis',   name: 'ss-keel-redis',   category: 'Cache',         live: false },
   { key: 'jwt',     name: 'ss-keel-jwt',     category: 'Auth',          live: false },
   { key: 'oauth',   name: 'ss-keel-oauth',   category: 'Auth',          live: false },
