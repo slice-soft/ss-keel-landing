@@ -2,10 +2,10 @@
 
 Landing page for [keel-go.dev](https://keel-go.dev) — the main website for the Keel framework.
 
-[![CI](https://github.com/slice-soft/ss-keel-landing/actions/workflows/ci.yml/badge.svg)](https://github.com/slice-soft/ss-keel-landing/actions)
 ![Astro](https://img.shields.io/badge/Astro-5.x-FF5D01?logo=astro&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Made in Colombia](https://img.shields.io/badge/Made%20in-Colombia-FCD116?labelColor=003893)
+[![Sponsor](https://img.shields.io/badge/Sponsor-SS--Keel-003893?logo=github-sponsors&logoColor=green)](https://github.com/sponsors/slice-soft)
 
 ---
 
