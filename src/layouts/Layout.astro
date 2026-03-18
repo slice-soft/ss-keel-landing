@@ -65,8 +65,13 @@ const jsonLd = JSON.stringify({
     <!-- JSON-LD -->
     <script type="application/ld+json" set:html={jsonLd} />
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+
     <!-- Design system tokens (SliceSoft shared) -->
-    <link rel="stylesheet" href="https://cdn.slicesoft.dev/design-system/latest/css/_variables.css" />
+    <link rel="stylesheet" href="https://cdn.slicesoft.dev/design-system/ss-design-system-v1.0.3/css/_variables.css" />
 
     <!-- Anti-FOUC -->
     <script is:inline>
@@ -118,6 +123,7 @@ const jsonLd = JSON.stringify({
     font-family: var(--text-fonts-sans, Inter, ui-sans-serif, system-ui, sans-serif);
     line-height: var(--text-line-heights-normal, 1.5);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     transition:
       background-color var(--transitions-durations-medium, 300ms),
       color var(--transitions-durations-medium, 300ms);
