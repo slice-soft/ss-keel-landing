@@ -5,7 +5,7 @@ export const addons = [
   { key: 'oauth',      name: 'ss-keel-oauth',      category: 'Auth',          live: true, slug: '/addons/ss-keel-oauth/' },
   { key: 'otp',        name: 'ss-keel-otp',        category: 'Auth',          live: false },
   { key: 'magic-link', name: 'ss-keel-magic-link', category: 'Auth',          live: false },
-  { key: 'redis',      name: 'ss-keel-redis',      category: 'Cache',         live: false },
+  { key: 'redis',      name: 'ss-keel-redis',      category: 'Cache',         live: true, slug: '/addons/ss-keel-redis/' },
   { key: 'amqp',       name: 'ss-keel-amqp',       category: 'Messaging',     live: false },
   { key: 'kafka',      name: 'ss-keel-kafka',      category: 'Messaging',     live: false },
   { key: 'mail',       name: 'ss-keel-mail',       category: 'Communication', live: false },
