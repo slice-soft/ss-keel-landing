@@ -11,6 +11,7 @@ export const addons = [
   { key: 'mail',       name: 'ss-keel-mail',       category: 'Communication', live: false },
   { key: 'ws',         name: 'ss-keel-ws',         category: 'Communication', live: false },
   { key: 'storage',    name: 'ss-keel-storage',    category: 'Storage',       live: false },
+  { key: 'devpanel',   name: 'ss-keel-devpanel',   category: 'Observability', live: true, slug: '/addons/ss-keel-devpanel/' },
   { key: 'metrics',    name: 'ss-keel-metrics',    category: 'Observability', live: false },
   { key: 'tracing',    name: 'ss-keel-tracing',    category: 'Observability', live: false },
   { key: 'cron',       name: 'ss-keel-cron',       category: 'Jobs',          live: false },
