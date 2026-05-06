@@ -13,6 +13,7 @@ export const addons = [
   { key: 'storage',    name: 'ss-keel-storage',    category: 'Storage',       live: false },
   { key: 'devpanel',   name: 'ss-keel-devpanel',   category: 'Observability', live: true, slug: '/addons/ss-keel-devpanel/' },
   { key: 'metrics',    name: 'ss-keel-metrics',    category: 'Observability', live: false },
+  { key: 'otel',       name: 'ss-keel-otel',       category: 'Observability', live: true, slug: '/addons/ss-keel-otel/' },
   { key: 'tracing',    name: 'ss-keel-tracing',    category: 'Observability', live: false },
   { key: 'cron',       name: 'ss-keel-cron',       category: 'Jobs',          live: false },
   { key: 'i18n',       name: 'ss-keel-i18n',       category: 'i18n',          live: false },
